@@ -6,11 +6,11 @@ Aplikasi mobile manajemen data produk (**Toko Kita**) yang terdiri dari aplikasi
 
 ## Video Record Hasil Aplikasi
 
-<p>
+<table><tr><td>
+    
+https://github.com/user-attachments/assets/39c4b74a-0eac-44ba-8054-9920bc91aa08
 
-
-
-</p>
+</td></tr></table>
 
 ---
 
