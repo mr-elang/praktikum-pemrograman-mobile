@@ -6,7 +6,7 @@ Project Flutter ini berisi latihan dasar pembuatan antarmuka menggunakan widget 
 
 <table><tr><td>
     
-
+<img width="621" height="1104" alt="image" src="https://github.com/user-attachments/assets/f0627011-a16c-4fa0-b1a7-0c73f403c4b9" />
 
 </td></tr></table>
 
