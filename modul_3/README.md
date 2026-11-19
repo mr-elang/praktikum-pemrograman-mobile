@@ -1,4 +1,4 @@
-# Modul 3 - Login, Penyimpanan Preferensi, dan Navigasi
+# Modul 3 - Aplikasi dengan Routes, Side Menu, Login dan Local Storage
 
 Project Flutter ini merupakan latihan membuat alur login sederhana, menyimpan nama pengguna secara lokal, serta berpindah halaman melalui navigation drawer.
 
@@ -6,7 +6,7 @@ Project Flutter ini merupakan latihan membuat alur login sederhana, menyimpan na
 
 <table><tr><td>
     
-
+https://github.com/user-attachments/assets/d458d088-dc93-466d-8384-73cad5abb52b
 
 </td></tr></table>
 
