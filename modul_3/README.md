@@ -1,17 +1,40 @@
-# modul_3
+# Modul 3 - Login, Penyimpanan Preferensi, dan Navigasi
 
-A new Flutter project.
+Project Flutter ini merupakan latihan membuat alur login sederhana, menyimpan nama pengguna secara lokal, serta berpindah halaman melalui navigation drawer.
 
-## Getting Started
+## Video Record Hasil Aplikasi
 
-This project is a starting point for a Flutter application.
+<table><tr><td>
+    
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+</td></tr></table>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Fitur
+
+- Form login dengan input username dan password.
+- Login demo menggunakan username `admin` dan password `admin`.
+- Menampilkan dialog untuk hasil login.
+- Menyimpan username dengan package `shared_preferences`.
+- Menampilkan username tersimpan pada halaman Home.
+- Navigation drawer untuk berpindah antara halaman Home dan About.
+
+## Struktur Folder `lib/`
+
+```text
+lib/
+├── about_page.dart   # Halaman About dengan navigation drawer
+├── home_page.dart    # Halaman Home dan pembacaan username tersimpan
+├── login_page.dart   # Form login demo dan penyimpanan username
+├── main.dart         # Entry point, membuka LoginPage
+└── sidemenu.dart     # Navigation drawer untuk Home dan About
+```
+
+## Menjalankan Aplikasi
+
+Pastikan Flutter SDK telah terpasang, lalu jalankan perintah berikut dari folder `modul_3`:
+
+```bash
+flutter pub get
+flutter run
+```
