@@ -1,61 +1,88 @@
-# CodeIgniter 4 Framework
+# Modul 4 & 5 - Aplikasi CRUD Flutter (`tokokita`) & REST API CodeIgniter 4 (`toko-api`)
 
-## What is CodeIgniter?
+Aplikasi mobile manajemen data produk (**Toko Kita**) yang terdiri dari aplikasi frontend **Flutter** (`tokokita`) dan backend RESTful API **CodeIgniter 4** (`toko-api`) dengan database **MySQL** (`toko_api`).
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+---
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Video Record Hasil Aplikasi
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+<table><tr><td>
+    
+https://github.com/user-attachments/assets/39c4b74a-0eac-44ba-8054-9920bc91aa08
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+</td></tr></table>
 
-## Important Change with index.php
+---
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## Riwayat Pengerjaan (Git Tags)
+- **Tag `modul-4`**: Pembuatan database `toko_api`, pembuatan backend REST API CodeIgniter 4 (`toko-api`), pengujian endpoint di Postman, serta pembuatan Model dan UI statis Flutter (`tokokita`).
+- **Tag `modul-5`**: Integrasi penuh CRUD pada `tokokita` (Registrasi, Login, List, Create, Detail, Update, Delete, dan Logout) dengan REST API `toko-api`.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+---
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Arsitektur & Struktur Folder (`lib/`)
 
-## Repository Management
+    lib/
+    ├── bloc/                  # Business Logic & komunikasi ke API
+    │   ├── login_bloc.dart
+    │   ├── logout_bloc.dart
+    │   ├── produk_bloc.dart
+    │   └── registrasi_bloc.dart
+    ├── helpers/               # Konfigurasi HTTP, URL API, exception, & sesi token
+    │   ├── api.dart
+    │   ├── api_url.dart
+    │   ├── app_exception.dart
+    │   └── user_info.dart
+    ├── model/                 # Model data & parsing JSON
+    │   ├── login.dart
+    │   ├── produk.dart
+    │   └── registrasi.dart
+    ├── ui/                    # Halaman antarmuka pengguna (Screens)
+    │   ├── login_page.dart
+    │   ├── produk_detail.dart
+    │   ├── produk_form.dart
+    │   ├── produk_page.dart
+    │   └── registrasi_page.dart
+    ├── widget/                # Komponen dialog kustom (Sukses & Gagal)
+    │   ├── success_dialog.dart
+    │   └── warning_dialog.dart
+    └── main.dart              # Entry point & pengecekan status login (token)
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## Backend (`toko-api` - CodeIgniter 4)
+   - `app/Config/Database.php`: Konfigurasi koneksi ke database MySQL `toko_api`.
+   - `app/Config/Routes.php`: Definisi endpoint `/registrasi`, `/login`, dan grup route `/produk`.
+   - `app/Controllers/`: `RestfulController.php`, `RegistrasiController.php`, `LoginController.php`, dan `ProdukController.php`.
+   - `app/Models/`: `MRegistrasi.php`, `MMember.php`, `MLogin.php`, dan `MProduk.php`.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+---
 
-## Contributing
+## Spesifikasi REST API (`toko-api`)
 
-We welcome contributions from the community.
+Base URL lokal: `http://localhost/toko-api/public`
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+| Fitur | Method | Endpoint | Keterangan |
+| :--- | :--- | :--- | :--- |
+| **Registrasi** | `POST` | `/registrasi` | Mendaftarkan member baru ke tabel `member` |
+| **Login** | `POST` | `/login` | Autentikasi user & generate `auth_key` ke `member_token` |
+| **List Produk** | `GET` | `/produk` | Mengambil seluruh daftar produk |
+| **Create Produk** | `POST` | `/produk` | Menambahkan produk baru ke tabel `produk` |
+| **Detail Produk** | `GET` | `/produk/{id}` | Mengambil detail produk berdasarkan ID |
+| **Update Produk** | `POST` / `PUT` | `/produk/{id}/update` atau `/produk/{id}` | Memperbarui data produk berdasarkan ID |
+| **Delete Produk** | `DELETE` | `/produk/{id}` | Menghapus data produk berdasarkan ID |
 
-## Server Requirements
+---
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+## Cara Menjalankan Aplikasi
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+1. **Setup Backend (`toko-api`) & Database (`toko_api`):**
+   - Salin folder `toko-api` ke direktori `htdocs` pada XAMPP (`/opt/lampp/htdocs/` di Linux atau `C:\xampp\htdocs\` di Windows).
+   - Nyalakan service Apache dan MySQL pada XAMPP.
+   - Buat database `toko_api` di phpMyAdmin beserta tabel `member`, `member_token`, dan `produk`.
+2. **Konfigurasi URL API di Flutter (`tokokita`):**
+   - Buka file `lib/helpers/api_url.dart`.
+   - Ubah nilai `baseUrl` sesuai perangkat pengujian:
+     - Emulator Android: `http://10.0.2.2/toko-api/public`
+     - Perangkat Android Fisik: `http://<IP-LOKAL-KOMPUTER>/toko-api/public`
+3. **Install Dependencies & Jalankan:**
+   - Jalankan `flutter pub get` untuk mengunduh package.
+   - Jalankan `flutter run` untuk membuka aplikasi di perangkat.
